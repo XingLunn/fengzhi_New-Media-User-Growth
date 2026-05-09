@@ -8,23 +8,21 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "蜂职速聘 · 新媒体知识库",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
-    },
-    locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    analytics: null,
+    locale: "zh-CN",
+    baseUrl: "localhost",
+    ignorePatterns: ["private", "templates", ".obsidian", ".WeDrive"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        header: "Noto Sans SC",
+        body: "Noto Sans SC",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -88,8 +86,8 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      // CustomOgImages disabled - Google Fonts inaccessible in China
+      // Plugin.CustomOgImages(),
     ],
   },
 }
