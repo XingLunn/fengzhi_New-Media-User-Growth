@@ -1,6 +1,6 @@
 ---
 status: stub
-graph-exclude: true
+draft: true
 ---
 
 # 2026年5月帖子记录

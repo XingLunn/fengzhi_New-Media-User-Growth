@@ -1,6 +1,6 @@
 ---
 status: stub
-graph-exclude: true
+draft: true
 ---
 
 # B端教程视频
