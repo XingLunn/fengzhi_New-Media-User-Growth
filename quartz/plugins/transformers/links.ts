@@ -109,17 +109,30 @@ export const CrawlLinks: QuartzTransformerPlugin<Partial<Options>> = (userOpts) 
                     transformOptions,
                   )
 
-                  // url.resolve is considered legacy
-                  // WHATWG equivalent https://nodejs.dev/en/api/v18/url/#urlresolvefrom-to
-                  const url = new URL(dest, "https://base.com/" + stripSlashes(curSlug, true))
-                  const canonicalDest = url.pathname
-                  let [destCanonical, _destAnchor] = splitAnchor(canonicalDest)
-                  if (destCanonical.endsWith("/")) {
-                    destCanonical += "index"
+                  // Resolve relative dest against curSlug to get the absolute path.
+                  // We do this manually instead of using new URL() because WHATWG URL
+                  // "shortens" the base path (removes the last segment) before processing
+                  // "..", which causes an off-by-one that strips the top-level directory.
+                  const slugParts = curSlug.split("/")
+                  slugParts.pop() // remove current file (equivalent to URL "shorten" step)
+                  const [_destPath, _destAnchor] = splitAnchor(dest)
+                  for (const part of _destPath.split("/")) {
+                    if (part === "..") {
+                      slugParts.pop()
+                    } else if (part && part !== ".") {
+                      slugParts.push(part)
+                    }
                   }
-
-                  // need to decodeURIComponent here as WHATWG URL percent-encodes everything
-                  const full = decodeURIComponent(stripSlashes(destCanonical, true)) as FullSlug
+                  let full = slugParts.join("/") as FullSlug
+                  // The "absolute" fallback produces paths relative to content root,
+                  // missing the top-level directory. Match against allSlugs to find
+                  // the correct FullSlug.
+                  if (!transformOptions.allSlugs.includes(full)) {
+                    const matches = transformOptions.allSlugs.filter((s) => s.endsWith("/" + full))
+                    if (matches.length === 1) {
+                      full = matches[0]
+                    }
+                  }
                   const simple = simplifySlug(full)
                   outgoing.add(simple)
                   node.properties["data-slug"] = full
