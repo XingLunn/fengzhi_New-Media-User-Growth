@@ -1,3 +1,200 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ========== 表格增强 ==========
+.table-container > table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+
+  th {
+    background: var(--lightgray);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    padding: 0.5rem 0.8rem;
+  }
+
+  td {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.93rem;
+    vertical-align: middle;
+  }
+
+  tr:hover td {
+    background-color: var(--highlight);
+    transition: background-color 0.15s ease;
+  }
+}
+
+// ========== Callout 增强 ==========
+.callout {
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+
+  .callout-title {
+    padding: 0.8rem 0;
+  }
+}
+
+// ========== 标题装饰 ==========
+article > h2 {
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--lightgray);
+}
+
+// ========== 引用块 ==========
+blockquote {
+  border-left-width: 4px;
+  border-radius: 0 6px 6px 0;
+  background: var(--highlight);
+  padding: 0.6rem 1rem;
+  margin: 1.2rem 0;
+}
+
+// ========== 内链悬停 ==========
+a.internal {
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--secondary);
+    color: #fff !important;
+  }
+}
+
+// ========== 代码块 ==========
+pre {
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+code {
+  border-radius: 4px;
+}
+
+// ========== 水平线 ==========
+hr {
+  height: 2px;
+  background: linear-gradient(to right, var(--lightgray), transparent);
+  margin: 2.5rem 0;
+}
+
+// ========== 图片增强 ==========
+img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+}
+
+// ========== 页面标题 ==========
+.page-header {
+  h1 {
+    font-size: 2rem;
+    letter-spacing: -0.01em;
+  }
+}
+
+// ========== 导航进度条 ==========
+.navigation-progress {
+  height: 3px;
+  background: linear-gradient(to right, var(--secondary), var(--tertiary));
+}
+
+// ========== 侧边栏 ==========
+.sidebar {
+  .explorer {
+    .folder-icon, .fold-icon {
+      transition: transform 0.2s ease;
+    }
+  }
+}
+
+// ========== 搜索框 ==========
+.search > .search-button {
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px var(--secondary);
+  }
+}
+
+// ========== 状态徽章 ==========
+.status-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  &.done {
+    background: #d4edda;
+    color: #2d6a3f;
+  }
+  &.wip {
+    background: #fff3cd;
+    color: #856404;
+  }
+  &.missing {
+    background: #fce4e4;
+    color: #a33;
+  }
+}
+
+// ========== 暗色模式适配 ==========
+:root[saved-theme="dark"] {
+  .status-badge {
+    &.done {
+      background: rgba(45, 106, 63, 0.3);
+      color: #6ee78e;
+    }
+    &.wip {
+      background: rgba(133, 100, 4, 0.3);
+      color: #f0d060;
+    }
+    &.missing {
+      background: rgba(170, 51, 51, 0.3);
+      color: #ff7070;
+    }
+  }
+
+  blockquote {
+    background: rgba(255,255,255,0.03);
+  }
+}
+
+// ========== MOC 页面流程箭头 ==========
+.moc-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--darkgray);
+  padding: 0.8rem 1rem;
+  background: var(--highlight);
+  border-radius: 8px;
+  margin: 1rem 0;
+
+  .flow-arrow {
+    color: var(--secondary);
+    font-weight: 700;
+  }
+}
+
+// ========== 响应式移动端 ==========
+@media all and (max-width: 800px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  article > h1 {
+    font-size: 1.5rem;
+  }
+  article > h2 {
+    font-size: 1.25rem;
+  }
+}
