@@ -6,6 +6,8 @@ title: 蜂职速聘 · 新媒体知识库
 
 灵活用工平台新媒体运营知识体系。
 
+🔗 网址：[https://xinglunn.github.io/fengzhi_New-Media-User-Growth/](https://xinglunn.github.io/fengzhi_New-Media-User-Growth/)
+
 ## 快速导航
 
 - 📝 [[新媒体增长/MOC-内容生产流|内容生产流]] — 排期 → 模板 → 发布 → 数据 → 复盘
